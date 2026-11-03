@@ -940,9 +940,52 @@ loadSynthConfigs();
 setupEngineControls(1);
 setupEngineControls(2);
 
-// Ratón
-document.querySelectorAll('.quadrant').forEach(q => {
-    q.addEventListener('mousedown', (e) => userStartTone(q.dataset.color, parseInt(q.dataset.instance || '1')));
-    q.addEventListener('mouseup', (e) => userStopTone(q.dataset.color, parseInt(q.dataset.instance || '1')));
-    q.addEventListener('mouseleave', (e) => userStopTone(q.dataset.color, parseInt(q.dataset.instance || '1')));
-});
+// LOGOSIMON — montaje de zonas = grupos por color desde un <template> SVG.
+// Convención: el SVG tiene <g class="z-{red|blue|green|yellow} quadrant"> con data-color.
+// Cada grupo recibe ID estable por instancia (q-{color} / q-{color}-2 / etc.) para
+// que el resto del sistema del Simon (start/stop tone, flash) siga funcionando.
+function mountLogoSlot(slot) {
+    const templateId = slot.dataset.logoTemplate;
+    const instance = slot.dataset.instance || '1';
+    const tpl = templateId && document.getElementById(templateId);
+    if (!tpl) {
+        console.error(`[logosimon] template missing: ${templateId}`);
+        return;
+    }
+    const clone = tpl.content.cloneNode(true);
+    slot.innerHTML = '';
+    slot.appendChild(clone);
+    const svg = slot.querySelector('svg');
+    if (!svg) {
+        console.error(`[logosimon] no <svg> in template ${templateId}`);
+        return;
+    }
+    svg.classList.add('logo-svg');
+    svg.setAttribute('width', '100%');
+    svg.setAttribute('height', '100%');
+    const suffix = instance === '1' ? '' : `-${instance}`;
+    const groups = svg.querySelectorAll('g[class*="z-"]');
+    groups.forEach(g => {
+        const match = g.getAttribute('class').match(/z-(red|blue|green|yellow)/);
+        if (!match) return;
+        const color = match[1];
+        g.classList.add('quadrant');
+        g.id = `q-${color}${suffix}`;
+        g.dataset.color = color;
+        g.dataset.instance = instance;
+    });
+    console.log(`[logosimon] mounted ${templateId} instance=${instance}: ${groups.length} zones`);
+}
+
+function wireQuadrantEvents(root = document) {
+    root.querySelectorAll('.quadrant').forEach(q => {
+        if (q.dataset.wired === '1') return;
+        q.dataset.wired = '1';
+        q.addEventListener('mousedown', () => userStartTone(q.dataset.color, parseInt(q.dataset.instance || '1')));
+        q.addEventListener('mouseup',   () => userStopTone(q.dataset.color, parseInt(q.dataset.instance || '1')));
+        q.addEventListener('mouseleave',() => userStopTone(q.dataset.color, parseInt(q.dataset.instance || '1')));
+    });
+}
+
+document.querySelectorAll('.logo-slot').forEach(mountLogoSlot);
+wireQuadrantEvents();

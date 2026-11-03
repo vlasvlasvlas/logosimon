@@ -279,6 +279,79 @@ body header, body .menu-container, body .data-column, body .telemetry, body #ful
 }
 @keyframes rotateSlow { 100% { transform: rotate(360deg); } }
 
+/* ============================================================
+   LOGOSIMON: tablero basado en SVG vectorial, zonas = grupos por color
+   ============================================================ */
+.simon-container.logo-container {
+    width: 420px; height: 420px;
+    perspective: 1200px;
+    position: relative;
+}
+.logo-container .simon-face { border-radius: 12px; }
+.logo-container .simon-back {
+    border: 2px solid var(--gold);
+    box-shadow: inset 0 0 50px rgba(0,0,0,1);
+}
+.logo-container .simon-back::before { border-radius: 8px; }
+
+.simon-board.logo-board {
+    width: 100%; height: 100%;
+    border-radius: 12px;
+    border: 2px solid var(--gold);
+    background: var(--bg-color);
+    display: block;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 50px rgba(0,0,0,1);
+}
+.logo-slot {
+    width: 100%; height: 100%;
+    display: block;
+    position: relative;
+}
+.logo-slot svg.logo-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+}
+
+/* Cada grupo de color = una zona clickeable del Simon. */
+.logo-slot svg g.quadrant {
+    cursor: pointer;
+    transition: filter 0.08s ease, opacity 0.08s ease;
+    opacity: 0.85;
+}
+.logo-slot svg g.quadrant:hover { opacity: 1; }
+
+/* Activación: la silueta real brilla con drop-shadow del propio color */
+.logo-slot svg g.quadrant.active {
+    opacity: 1;
+    filter:
+        drop-shadow(0 0 6px currentColor)
+        drop-shadow(0 0 18px currentColor)
+        brightness(1.15);
+}
+.logo-slot svg g.quadrant.z-red    { color: #E53935; }
+.logo-slot svg g.quadrant.z-blue   { color: #1E88E5; }
+.logo-slot svg g.quadrant.z-green  { color: #4CAF50; }
+.logo-slot svg g.quadrant.z-yellow { color: #FFB300; }
+
+/* Core/botón de config fuera del tablero */
+.center-core.external-core {
+    position: absolute;
+    top: auto; left: auto;
+    right: -22px; bottom: -22px;
+    transform: none;
+    width: 54px; height: 54px;
+    z-index: 5;
+    padding: 0;
+}
+.center-core.external-core .core-ring {
+    width: 28px; height: 28px;
+}
+
 /* Data Column (Lyrics & Controls) */
 .controls-voyager { margin-bottom: 25px; display: flex; flex-direction: column; gap: 15px; }
 .control-group { border: 1px solid var(--gold-dim); padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; background: rgba(3,3,3,0.5); }
