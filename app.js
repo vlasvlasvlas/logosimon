@@ -8,7 +8,7 @@ const APP_STATE = {
     synthConfigs: null,
     synth: {
         1: { synthEpoch: "4", rootFreq: 110.00, delayTime: 0.0, feedback: 0.0, masterVolume: 0.6 },
-        2: { synthEpoch: "4", rootFreq: 110.00, delayTime: 0.0, feedback: 0.0, masterVolume: 0.6 },
+        2: { synthEpoch: "6", rootFreq: 110.00, delayTime: 0.0, feedback: 0.0, masterVolume: 0.6 },
         'loops': { synthEpoch: "4", rootFreq: 110.00, delayTime: 0.0, feedback: 0.0, masterVolume: 0.6 }
     }
 };
@@ -927,16 +927,20 @@ async function loadSynthConfigs() {
     try {
         APP_STATE.synthConfigs = window.SYNTH_CONFIGS;
         
-        const selects = [document.getElementById('synthEpochSelect'), document.getElementById('synthEpochSelect2')];
-        selects.forEach(select => {
-            if (!select) return;
-            select.innerHTML = '';
+        // Simon 1 arranca con "4" (SPIEGEL); Simon 2 (dual) arranca con "6" (SPACE LADY).
+        const selects = [
+            { el: document.getElementById('synthEpochSelect'),  defaultId: "4" },
+            { el: document.getElementById('synthEpochSelect2'), defaultId: "6" },
+        ];
+        selects.forEach(({ el, defaultId }) => {
+            if (!el) return;
+            el.innerHTML = '';
             for (const [id, config] of Object.entries(APP_STATE.synthConfigs)) {
                 const option = document.createElement('option');
                 option.value = id;
                 option.textContent = config.name;
-                if (id === "4") option.selected = true;
-                select.appendChild(option);
+                if (id === defaultId) option.selected = true;
+                el.appendChild(option);
             }
         });
     } catch (e) {
