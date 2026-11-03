@@ -65,8 +65,14 @@
                         <div class="simon-container logo-container" id="simon-container-2">
                             <div class="simon-flipper" id="simonFlipper2">
                                 <div class="simon-face simon-front">
-                                    <div class="simon-board logo-board">
+                                    <div class="simon-board logo-board" data-flip-target="simonFlipper2">
                                         <div class="logo-slot" data-logo-template="logo-template-trebol" data-instance="2"></div>
+                                        <div class="config-hint" title="CONFIGURAR TIMBRE">
+                                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="12" r="3"/>
+                                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                                            </svg>
+                                        </div>
                                     </div>
                                 </div>
                                 
@@ -115,9 +121,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="center-core external-core" id="flipToBackBtn2" title="AJUSTAR SÍNTESIS">
-                                <div class="core-ring"></div>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -146,8 +149,14 @@
                         <div class="simon-flipper" id="simonFlipper">
                             <!-- ANVERSO (EL JUEGO) -->
                             <div class="simon-face simon-front">
-                                <div class="simon-board logo-board" id="simonBoard">
+                                <div class="simon-board logo-board" id="simonBoard" data-flip-target="simonFlipper">
                                     <div class="logo-slot" data-logo-template="logo-template-trebol" data-instance="1"></div>
+                                    <div class="config-hint" title="CONFIGURAR TIMBRE">
+                                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="3"/>
+                                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                                        </svg>
+                                    </div>
                                 </div>
                             </div>
                             <!-- REVERSO (EL MOTOR SINTETIZADOR) -->
@@ -198,9 +207,6 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="center-core external-core" id="flipToBackBtn" title="ACCESS REAR ENGINE">
-                            <div class="core-ring"></div>
-                        </button>
                     </div>
                     <!-- Fin de simon-container (que puede moverse por JS) -->
 

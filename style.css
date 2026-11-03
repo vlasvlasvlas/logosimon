@@ -304,6 +304,31 @@ body header, body .menu-container, body .data-column, body .telemetry, body #ful
     position: relative;
     overflow: hidden;
     box-shadow: inset 0 0 50px rgba(0,0,0,1);
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.simon-board.logo-board:hover {
+    border-color: #f0d770;
+    box-shadow: inset 0 0 50px rgba(0,0,0,1), 0 0 18px rgba(212, 175, 55, 0.35);
+}
+/* Dentro del SVG el cursor sigue siendo "jugar" — los grupos quadrant ya lo definen */
+.simon-board.logo-board .logo-slot { cursor: default; }
+
+/* Ícono de "configurar timbre" en una esquina del borde del tablero */
+.config-hint {
+    position: absolute;
+    top: 8px; right: 8px;
+    width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold-dim);
+    opacity: 0.55;
+    pointer-events: none;
+    transition: opacity 0.2s ease, color 0.2s ease;
+    z-index: 4;
+}
+.simon-board.logo-board:hover .config-hint {
+    opacity: 1;
+    color: var(--gold);
 }
 .logo-slot {
     width: 100%; height: 100%;
@@ -338,19 +363,6 @@ body header, body .menu-container, body .data-column, body .telemetry, body #ful
 .logo-slot svg g.quadrant.z-green  { color: #4CAF50; }
 .logo-slot svg g.quadrant.z-yellow { color: #FFB300; }
 
-/* Core/botón de config fuera del tablero */
-.center-core.external-core {
-    position: absolute;
-    top: auto; left: auto;
-    right: -22px; bottom: -22px;
-    transform: none;
-    width: 54px; height: 54px;
-    z-index: 5;
-    padding: 0;
-}
-.center-core.external-core .core-ring {
-    width: 28px; height: 28px;
-}
 
 /* Data Column (Lyrics & Controls) */
 .controls-voyager { margin-bottom: 25px; display: flex; flex-direction: column; gap: 15px; }

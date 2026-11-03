@@ -148,9 +148,17 @@ bpmSlider.addEventListener('input', (e) => {
 
 const setupEngineControls = (instanceId) => {
     const ext = instanceId === 1 ? '' : '2';
-    const btnFlipBack = document.getElementById(`flipToBackBtn${ext}`);
     const flipper = document.getElementById(`simonFlipper${ext}`);
-    if (btnFlipBack && flipper) btnFlipBack.addEventListener('click', () => flipper.classList.add('flipped'));
+    // Flip al back al tocar el borde del logo-board (zona entre el border dorado y el SVG).
+    // Clicks sobre .quadrant (zonas de color del SVG) no flipean — esos tocan el instrumento.
+    const logoBoard = flipper && flipper.querySelector('.logo-board');
+    if (logoBoard && flipper) {
+        logoBoard.addEventListener('click', (e) => {
+            if (e.target.closest('.quadrant')) return;
+            if (flipper.classList.contains('flipped')) return;
+            flipper.classList.add('flipped');
+        });
+    }
 
     const backFace = document.getElementById(`simonBackFace${ext}`);
     if (backFace && flipper) {
