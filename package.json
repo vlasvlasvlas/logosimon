@@ -1,0 +1,11 @@
+{
+  "name": "logosimon",
+  "version": "0.1.0",
+  "description": "Simon game synthesizer with custom loadable shapes/logos",
+  "scripts": {
+    "start": "serve -l 8001"
+  },
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}
